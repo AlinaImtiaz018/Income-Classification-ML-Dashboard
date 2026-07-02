@@ -89,7 +89,6 @@ st.markdown("""
 
     #MainMenu { visibility: hidden; }
     footer { visibility: hidden; }
-    header { visibility: hidden; }
 </style>
 """, unsafe_allow_html=True)
 
@@ -214,16 +213,16 @@ with st.sidebar:
 
     st.markdown("<p>Navigation</p>", unsafe_allow_html=True)
     page = st.radio(
-        "", ["📊 Overview", "🔍 Data Exploration", "🤖 Model Results", "📈 Model Comparison", "🎯 Predictions"],
-        label_visibility="collapsed",
+        "Navigation", ["📊 Overview", "🔍 Data Exploration", "🤖 Model Results", "📈 Model Comparison", "🎯 Predictions"],
+        label_visibility="hidden",
     )
 
     st.markdown("<hr style='border-color:#1e2535;margin:1rem 0;'>", unsafe_allow_html=True)
     st.markdown("<p>Imputation Method</p>", unsafe_allow_html=True)
-    imputation = st.selectbox("", ["KNN", "Iterative", "Dropped"], label_visibility="collapsed")
+    imputation = st.selectbox("Imputation Method", ["KNN", "Iterative", "Dropped"], label_visibility="hidden")
 
     st.markdown("<p>Primary Model</p>", unsafe_allow_html=True)
-    model_choice = st.selectbox("", MODEL_NAMES_FULL, index=2, label_visibility="collapsed")
+    model_choice = st.selectbox("Primary Model", MODEL_NAMES_FULL, index=2, label_visibility="hidden")
 
     st.markdown("<hr style='border-color:#1e2535;margin:1rem 0;'>", unsafe_allow_html=True)
     if DATA_LOADED:
@@ -250,7 +249,7 @@ with st.sidebar:
 if page == "📊 Overview":
     st.markdown("""
     <div style="margin-bottom:2rem;">
-        <div class="hero-title">Income <span class="hero-accent">Classification</span><br>Dashboard</div>
+        <div class="hero-title">Income <span class="hero-accent">Classification</span><br>ML Dashboard</div>
         <div class="hero-subtitle">Binary prediction — ≤50K vs >50K annual income · Gradient Boosting best performer</div>
     </div>""", unsafe_allow_html=True)
 
@@ -289,7 +288,7 @@ if page == "📊 Overview":
         apply_layout(fig, height=360,
                      yaxis_kw=dict(range=[0.6, 0.97], tickformat=".0%", gridcolor=COLORS["border"]),
                      barmode="group", bargap=0.2, bargroupgap=0.05)
-        st.plotly_chart(fig, use_container_width=True)
+        st.plotly_chart(fig, width="stretch")
 
     with col_right:
         st.markdown('<div class="section-eyebrow">Dataset</div><div class="section-header">Class distribution (labeled)</div>', unsafe_allow_html=True)
@@ -305,7 +304,7 @@ if page == "📊 Overview":
         apply_layout(fig2, height=360,
                      legend_kw=dict(orientation="h", y=-0.05),
                      showlegend=True)
-        st.plotly_chart(fig2, use_container_width=True)
+        st.plotly_chart(fig2, width="stretch")
 
     st.markdown('<div class="section-header">Project Summary</div>', unsafe_allow_html=True)
     i1, i2, i3 = st.columns(3)
@@ -342,7 +341,7 @@ elif page == "🔍 Data Exploration":
             "Missing": [f"{miss[c]:,}" if miss[c] > 0 else "—" for c in COLUMNS],
             "Unique":  [str(df[c].nunique()) for c in COLUMNS],
         })
-        st.dataframe(schema, use_container_width=True, hide_index=True)
+        st.dataframe(schema, width="stretch", hide_index=True)
 
     with col_b:
         st.markdown('<div class="section-eyebrow">Missing Values</div><div class="section-header">Columns with nulls</div>', unsafe_allow_html=True)
@@ -358,7 +357,7 @@ elif page == "🔍 Data Exploration":
         apply_layout(fig_miss, height=320,
                      xaxis_kw=dict(title="Missing count", gridcolor=COLORS["border"]),
                      yaxis_kw=dict(gridcolor="rgba(0,0,0,0)"))
-        st.plotly_chart(fig_miss, use_container_width=True)
+        st.plotly_chart(fig_miss, width="stretch")
 
     st.markdown("<hr>", unsafe_allow_html=True)
 
@@ -387,7 +386,7 @@ elif page == "🔍 Data Exploration":
                            margin=dict(l=10, r=10, t=40, b=10))
     fig_num.update_xaxes(gridcolor=COLORS["border"], linecolor=COLORS["border"])
     fig_num.update_yaxes(gridcolor=COLORS["border"], linecolor=COLORS["border"], showticklabels=False)
-    st.plotly_chart(fig_num, use_container_width=True)
+    st.plotly_chart(fig_num, width="stretch")
 
     st.markdown("<hr>", unsafe_allow_html=True)
 
@@ -403,7 +402,7 @@ elif page == "🔍 Data Exploration":
     ))
     apply_layout(fig_cat, title=f"{cat_choice} distribution", height=340,
                  yaxis_kw=dict(gridcolor=COLORS["border"]))
-    st.plotly_chart(fig_cat, use_container_width=True)
+    st.plotly_chart(fig_cat, width="stretch")
 
     st.markdown("<hr>", unsafe_allow_html=True)
 
@@ -425,7 +424,7 @@ elif page == "🔍 Data Exploration":
         ))
     apply_layout(fig_biv, title=f"{num_choice} by income class", height=320,
                  yaxis_kw=dict(showticklabels=False, gridcolor=COLORS["border"]))
-    st.plotly_chart(fig_biv, use_container_width=True)
+    st.plotly_chart(fig_biv, width="stretch")
 
 # ─── Page: Model Results ──────────────────────────────────────────────────────────
 elif page == "🤖 Model Results":
@@ -473,7 +472,7 @@ elif page == "🤖 Model Results":
                      yaxis_kw=dict(tickvals=[0,1], ticktext=["≤50K",">50K"],
                                    title="Actual", gridcolor="rgba(0,0,0,0)",
                                    autorange="reversed"))
-        st.plotly_chart(fig_cm, use_container_width=True)
+        st.plotly_chart(fig_cm, width="stretch")
 
     # ── Metric bar ───────────────────────────────────────────────────────────────
     with col_bar:
@@ -489,7 +488,7 @@ elif page == "🤖 Model Results":
         ))
         apply_layout(fig_bar, height=320,
                      yaxis_kw=dict(range=[0, 1.18], gridcolor=COLORS["border"], tickformat=".0%"))
-        st.plotly_chart(fig_bar, use_container_width=True)
+        st.plotly_chart(fig_bar, width="stretch")
 
     # ── Full table for this imputation ────────────────────────────────────────────
     st.markdown("<hr>", unsafe_allow_html=True)
@@ -506,7 +505,7 @@ elif page == "🤖 Model Results":
             "Precision": f"{m['precision']:.3f}",
             "ROC AUC":   f"{m['roc_auc']:.3f}",
         })
-    st.dataframe(pd.DataFrame(rows), use_container_width=True, hide_index=True)
+    st.dataframe(pd.DataFrame(rows), width="stretch", hide_index=True)
 
 # ─── Page: Model Comparison ───────────────────────────────────────────────────────
 elif page == "📈 Model Comparison":
@@ -532,7 +531,7 @@ elif page == "📈 Model Comparison":
                  yaxis_kw=dict(gridcolor=COLORS["border"],
                                range=[0, max(RESULTS[m][n][metric_opt] for m in methods for n in MODEL_NAMES_FULL) * 1.2]),
                  barmode="group", bargap=0.2, bargroupgap=0.05)
-    st.plotly_chart(fig_cmp, use_container_width=True)
+    st.plotly_chart(fig_cmp, width="stretch")
 
     # ── Radar: best model per imputation ─────────────────────────────────────────
     st.markdown('<div class="section-header">Multi-metric radar — Gradient Boosting across imputation methods</div>', unsafe_allow_html=True)
@@ -561,7 +560,7 @@ elif page == "📈 Model Comparison":
         legend=dict(bgcolor="rgba(0,0,0,0)", font=dict(size=11)),
         margin=dict(l=50, r=50, t=40, b=30),
     )
-    st.plotly_chart(fig_radar, use_container_width=True)
+    st.plotly_chart(fig_radar, width="stretch")
 
     # ── Heatmap ───────────────────────────────────────────────────────────────────
     st.markdown("<hr>", unsafe_allow_html=True)
@@ -581,7 +580,7 @@ elif page == "📈 Model Comparison":
     apply_layout(fig_heat, height=300,
                  xaxis_kw=dict(gridcolor="rgba(0,0,0,0)"),
                  yaxis_kw=dict(gridcolor="rgba(0,0,0,0)"))
-    st.plotly_chart(fig_heat, use_container_width=True)
+    st.plotly_chart(fig_heat, width="stretch")
 
 # ─── Page: Predictions ────────────────────────────────────────────────────────────
 elif page == "🎯 Predictions":
@@ -616,7 +615,7 @@ elif page == "🎯 Predictions":
     ))
     apply_layout(fig_pred, height=380, yaxis_kw=dict(gridcolor=COLORS["border"]),
                  barmode="group", bargap=0.3)
-    st.plotly_chart(fig_pred, use_container_width=True)
+    st.plotly_chart(fig_pred, width="stretch")
 
     # ── Stacked % bar ─────────────────────────────────────────────────────────────
     st.markdown('<div class="section-header">Class share by imputation method</div>', unsafe_allow_html=True)
@@ -636,7 +635,7 @@ elif page == "🎯 Predictions":
     ))
     apply_layout(fig_stk, height=300, yaxis_kw=dict(tickformat=".0%", gridcolor=COLORS["border"]),
                  barmode="stack")
-    st.plotly_chart(fig_stk, use_container_width=True)
+    st.plotly_chart(fig_stk, width="stretch")
 
     st.markdown("<hr>", unsafe_allow_html=True)
     st.markdown("""<div class="info-box">
