@@ -15,92 +15,179 @@ st.set_page_config(
 # ─── Custom CSS ─────────────────────────────────────────────────────────────────
 st.markdown("""
 <style>
-    @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Space+Grotesk:wght@400;500;600;700&display=swap');
+    @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=DM+Sans:wght@400;500;600;700&display=swap');
 
     html, body, [class*="css"] { font-family: 'Inter', sans-serif; }
-    .main { background-color: #0f1117; }
-    .block-container { padding: 2rem 2.5rem; max-width: 1400px; }
-
-    section[data-testid="stSidebar"] {
-        background-color: #161b27;
-        border-right: 1px solid #1e2535;
+    .main { background-color: #0F172A; }
+    .block-container {
+        padding-top: 2.5rem;
+        padding-right: 2.5rem;
+        padding-left: 2.5rem;
+        padding-bottom: 2rem;
+        max-width: 1400px;
     }
+
+    /* ── Sidebar ── */
+    section[data-testid="stSidebar"] {
+        background-color: #ad1f42; /* #4a1c28*/
+        /* Subtle right border that blends — much darker than before */
+        border-right: 1px solid #321018;
+        /* Inward shadow gives depth without a harsh line */
+        box-shadow: 4px 0 24px rgba(0,0,0,0.55);
+    }
+
+    /* Sidebar label typography — section headings above widgets */
     section[data-testid="stSidebar"] .stSelectbox label,
     section[data-testid="stSidebar"] .stRadio label,
     section[data-testid="stSidebar"] p {
-        color: #a0aec0 !important;
-        font-size: 0.82rem;
+        color: #ffffff !important; /* #E8CAD0*/
+        font-size: 0.8rem;
         font-weight: 500;
-        letter-spacing: 0.04em;
+        letter-spacing: 0.1em;
         text-transform: uppercase;
+        margin-bottom: 0 !important;
     }
 
+    /* Fixed, uniform spacing: label → widget → next label */
+    section[data-testid="stSidebar"] div[data-testid="stMarkdownContainer"] p {
+        margin-top: 0.1rem;
+        margin-bottom: 0.2rem;
+    }
+    section[data-testid="stSidebar"] div[data-testid="stSelectbox"] {
+        margin-bottom: 0;
+    }
+    section[data-testid="stSidebar"] div[data-testid="stRadio"] {
+        margin-bottom: 0;
+    }
+    /* Radio option labels */
+    section[data-testid="stSidebar"] .stRadio div[role="radiogroup"] label {
+        font-size: 0.84rem !important;
+        font-weight: 400 !important;
+        letter-spacing: 0 !important;
+        text-transform: none !important;
+        color: #dba8b4 !important;
+        padding: 0.18rem 0;
+    }
+    section[data-testid="stSidebar"] .stRadio div[role="radiogroup"] label:hover {
+        color: #F8FAFC !important;
+    }
+    /* Sidebar top padding */
+    section[data-testid="stSidebar"] .block-container,
+    section[data-testid="stSidebar"] > div:first-child {
+        padding-top: 0.5rem !important;
+    }
+    section[data-testid="stSidebar"] div[data-testid="stVerticalBlock"] {
+        gap: 0rem !important;
+    }
+
+    /* ── Hero ── */
     .hero-title {
-        font-family: 'Space Grotesk', sans-serif;
-        font-size: 2.6rem;
+        font-family: 'DM Sans', sans-serif;
+        font-size: 2.5rem;
         font-weight: 700;
-        color: #f0f4ff;
-        letter-spacing: -0.02em;
-        line-height: 1.15;
-        margin-bottom: 0.15rem;
+        color: #F8FAFC;
+        letter-spacing: -0.025em;
+        line-height: 1.18;
+        margin-bottom: 0.2rem;
     }
-    .hero-subtitle { font-size: 0.95rem; color: #6b7a99; font-weight: 400; margin-bottom: 0; }
-    .hero-accent { color: #6366f1; }
+    .hero-subtitle {
+        font-size: 0.92rem;
+        color: #94A3B8;
+        font-weight: 400;
+        margin-bottom: 0;
+        line-height: 1.5;
+    }
+    .hero-accent { color: #dd3c64; }
 
+    /* ── KPI cards ── */
     .kpi-card {
-        background: #161b27;
-        border: 1px solid #1e2a3a;
-        border-radius: 12px;
-        padding: 1.25rem 1.5rem;
+        background: #161e2e;
+        border: 1px solid #243044;
+        border-top: 2px solid #dd3c64;
+        border-radius: 10px;
+        padding: 1.2rem 1.4rem 1rem 1.4rem;
         position: relative;
-        overflow: hidden;
+        height: 126px;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        box-shadow: 0 4px 20px rgba(0,0,0,0.45), 0 1px 4px rgba(0,0,0,0.3);
     }
-    .kpi-card::before {
-        content: '';
-        position: absolute;
-        top: 0; left: 0; right: 0;
-        height: 2px;
-        background: linear-gradient(90deg, #6366f1, #8b5cf6);
+    .kpi-label {
+        font-size: 0.67rem;
+        font-weight: 600;
+        letter-spacing: 0.1em;
+        text-transform: uppercase;
+        color: #94A3B8;
+        margin-bottom: 0.3rem;
     }
-    .kpi-label { font-size: 0.7rem; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; color: #6b7a99; margin-bottom: 0.35rem; }
-    .kpi-value { font-family: 'Space Grotesk', sans-serif; font-size: 2rem; font-weight: 700; color: #f0f4ff; line-height: 1; }
-    .kpi-sub { font-size: 0.75rem; color: #4ade80; margin-top: 0.3rem; }
-    .kpi-sub-warn { font-size: 0.75rem; color: #f87171; margin-top: 0.3rem; }
+    .kpi-value {
+        font-family: 'DM Sans', sans-serif;
+        font-size: 1.9rem;
+        font-weight: 700;
+        color: #F8FAFC;
+        line-height: 1;
+    }
+    .kpi-sub      { font-size: 0.73rem; color: #22C55E; margin-top: 0.25rem; min-height: 1rem; }
+    .kpi-sub-warn { font-size: 0.73rem; color: #EF04444; margin-top: 0.25rem; min-height: 1rem; }
 
+    /* ── Section headings ── */
     .section-header {
-        font-family: 'Space Grotesk', sans-serif;
-        font-size: 1.1rem; font-weight: 600; color: #c9d1e0;
-        letter-spacing: -0.01em; margin-bottom: 0.75rem;
-        padding-bottom: 0.5rem; border-bottom: 1px solid #1e2535;
+        font-family: 'DM Sans', sans-serif;
+        font-size: 1.05rem;
+        font-weight: 600;
+        color: #F8FAFC;
+        letter-spacing: -0.01em;
+        margin-bottom: 0.75rem;
+        padding-bottom: 0.5rem;
+        border-bottom: 1px solid #334155;
     }
-    .section-eyebrow { font-size: 0.65rem; font-weight: 600; letter-spacing: 0.12em; text-transform: uppercase; color: #6366f1; margin-bottom: 0.2rem; }
+    .section-eyebrow {
+        font-size: 0.63rem;
+        font-weight: 700;
+        letter-spacing: 0.12em;
+        text-transform: uppercase;
+        color: #db5771;
+        margin-bottom: 0.18rem;
+    }
 
-    hr { border: none; border-top: 1px solid #1e2535; margin: 1.5rem 0; }
+    /* ── Dividers ── */
+    hr { border: none; border-top: 1px solid #334155; margin: 1.5rem 0; }
 
+    /* ── Info boxes ── */
     .info-box {
-        background: #161b27;
-        border: 1px solid #1e2535;
-        border-left: 3px solid #6366f1;
+        background: #0d1117;
+        border: 1px solid #334155;
+        border-left: 3px solid #dd3c64;
         border-radius: 8px;
-        padding: 0.9rem 1.1rem;
-        font-size: 0.83rem; color: #8892a4; line-height: 1.6;
+        padding: 1rem 1.15rem;
+        font-size: 0.83rem;
+        color: #94A3B8;
+        line-height: 1.65;
+        min-height: 120px;
     }
-    .info-box strong { color: #c9d1e0; }
+    .info-box strong { color: #F8FAFC; }
 
     #MainMenu { visibility: hidden; }
-    footer { visibility: hidden; }
+    footer     { visibility: hidden; }
 </style>
 """, unsafe_allow_html=True)
 
-# ─── Constants ───────────────────────────────────────────────────────────────────
+# ─── Color palette ────────────────────────────────────────────────────────────────
 COLORS = {
-    "primary": "#6366f1", "secondary": "#8b5cf6",
-    "green": "#4ade80",   "red": "#f87171",
-    "amber": "#fbbf24",   "cyan": "#22d3ee",
-    "bg": "#0f1117",      "card": "#161b27",
-    "border": "#1e2535",  "text": "#c9d1e0",  "muted": "#6b7a99",
+    "primary":   "#dd3c64",
+    "secondary": "#c04a6a",
+    "teal":      "#00b3b3",
+    "green":     "#22C55E",
+    "red":       "#EF4444",
+    "amber":     "#F59E0B",
+    "bg":        "#0F172A",
+    "card":      "#0d1117",
+    "border":    "#334155",
+    "text":      "#F8FAFC",
+    "muted":     "#94A3B8",
 }
-MODEL_COLORS = ["#6366f1", "#4ade80", "#fbbf24", "#f87171"]
+MODEL_COLORS = ["#c36ce0", "#22C55E", "#F59E0B", "#EF4444"]
 MODEL_NAMES_SHORT = ["Logistic Reg.", "Random Forest", "Grad. Boosting", "SVM"]
 MODEL_NAMES_FULL = [
     "Linear Classification",
@@ -150,7 +237,6 @@ def load_data(path: str = "data/einkommen.train") -> pd.DataFrame:
     df = pd.read_csv(path, names=COLUMNS)
     df.replace(" ?", pd.NA, inplace=True)
     df["Income"] = df["Income"].str.strip()
-    # Strip leading/trailing whitespace from all string columns
     for col in df.select_dtypes("object").columns:
         df[col] = df[col].str.strip()
     return df
@@ -162,11 +248,10 @@ except FileNotFoundError:
     df = None
     DATA_LOADED = False
 
-# ─── Helper functions ────────────────────────────────────────────────────────────
+# ─── Layout helpers ───────────────────────────────────────────────────────────────
 def base_layout(title="", height=400) -> dict:
-    """Base Plotly layout — excludes xaxis, yaxis, legend so callers never get duplicate-key errors."""
     return dict(
-        title=dict(text=title, font=dict(family="Space Grotesk", size=14, color=COLORS["text"]), x=0),
+        title=dict(text=title, font=dict(family="DM Sans", size=14, color=COLORS["text"]), x=0),
         height=height,
         paper_bgcolor="rgba(0,0,0,0)",
         plot_bgcolor="rgba(0,0,0,0)",
@@ -175,7 +260,6 @@ def base_layout(title="", height=400) -> dict:
     )
 
 def axis_style(**kwargs) -> dict:
-    """Default axis styling merged with any caller overrides."""
     base = dict(gridcolor=COLORS["border"], linecolor=COLORS["border"], tickfont=dict(size=11))
     base.update(kwargs)
     return base
@@ -183,12 +267,11 @@ def axis_style(**kwargs) -> dict:
 DEFAULT_LEGEND = dict(bgcolor="rgba(0,0,0,0)", bordercolor=COLORS["border"], font=dict(size=11))
 
 def apply_layout(fig, title="", height=400, xaxis_kw=None, yaxis_kw=None, legend_kw=None, **extra):
-    """Single entry-point for update_layout — builds the full dict so no key ever appears twice."""
     layout = base_layout(title, height)
     layout["xaxis"]  = axis_style(**(xaxis_kw or {}))
     layout["yaxis"]  = axis_style(**(yaxis_kw or {}))
     layout["legend"] = {**DEFAULT_LEGEND, **(legend_kw or {})}
-    layout.update(extra)          # barmode, bargap, showlegend, etc.
+    layout.update(extra)
     fig.update_layout(**layout)
 
 def make_kpi(label, value, sub="", warn=False):
@@ -197,52 +280,58 @@ def make_kpi(label, value, sub="", warn=False):
     <div class="kpi-card">
         <div class="kpi-label">{label}</div>
         <div class="kpi-value">{value}</div>
-        {f'<div class="{sub_class}">{sub}</div>' if sub else ''}
+        <div class="{sub_class}">{sub if sub else "&nbsp;"}</div>
     </div>"""
 
-# ─── Sidebar ─────────────────────────────────────────────────────────────────────
+# ─── Sidebar ───────────────────────────────────────────────────────────────────── ⚡ 
 with st.sidebar:
     st.markdown("""
-    <div style="padding:1rem 0 1.5rem 0;">
-        <div style="font-family:'Space Grotesk',sans-serif;font-size:1.1rem;font-weight:700;color:#f0f4ff;letter-spacing:-0.01em;">
-            ⚡ Income Predict
+    <div style="padding:1.1rem 0 1.4rem 0; border-bottom:1px solid #5c2432; margin-bottom:0.5rem;">
+        <div style="font-family:'DM Sans',sans-serif; font-size:1.30rem; font-weight:700;
+                    color:#F8FAFC; letter-spacing:-0.01em; line-height:1.2;">
+            Income Predict
         </div>
-        <div style="font-size:0.72rem;color:#6b7a99;margin-top:0.2rem;">ML Classification Dashboard</div>
+        <div style="font-size:0.725rem; color:#e8b4be; margin-top:0.3rem; letter-spacing:0.05em;">
+            ML Classification Dashboard
+        </div>
     </div>
     """, unsafe_allow_html=True)
 
-    st.markdown("<p>Navigation</p>", unsafe_allow_html=True)
+    st.markdown("<br><p>Navigation</p>", unsafe_allow_html=True)
     page = st.radio(
-        "Navigation", ["📊 Overview", "🔍 Data Exploration", "🤖 Model Results", "📈 Model Comparison", "🎯 Predictions"],
+        "Navigation",
+        ["📊 Overview", "🔍 Data Exploration", "🧠 Model Results", "📈 Model Comparison", "🎯 Predictions"],
         label_visibility="hidden",
     )
 
-    st.markdown("<hr style='border-color:#1e2535;margin:1rem 0;'>", unsafe_allow_html=True)
-    st.markdown("<p>Imputation Method</p>", unsafe_allow_html=True)
+    st.markdown("<hr style='border-color:#5c2432; margin:0.75rem 0;'>", unsafe_allow_html=True)
+
+    st.markdown("<br><p>Imputation Method</p>", unsafe_allow_html=True)
     imputation = st.selectbox("Imputation Method", ["KNN", "Iterative", "Dropped"], label_visibility="hidden")
 
-    st.markdown("<p>Primary Model</p>", unsafe_allow_html=True)
+    st.markdown("<br><p>Primary Model</p>", unsafe_allow_html=True)
     model_choice = st.selectbox("Primary Model", MODEL_NAMES_FULL, index=2, label_visibility="hidden")
 
-    st.markdown("<hr style='border-color:#1e2535;margin:1rem 0;'>", unsafe_allow_html=True)
+    st.markdown("<hr style='border-color:#5c2432; margin:0.75rem 0;'>", unsafe_allow_html=True)
+
     if DATA_LOADED:
         labeled = df[df["Income"].isin(["<=50K", ">50K"])]
-        n_total = len(df)
+        n_total   = len(df)
         n_labeled = len(labeled)
         st.markdown(f"""
-        <div style="font-size:0.72rem;color:#6b7a99;line-height:1.8;">
-            <strong style="color:#c9d1e0;">Dataset loaded ✓</strong><br>
-            {n_total:,} total rows<br>
-            {n_labeled:,} labeled rows<br><br>
-            <strong style="color:#c9d1e0;">Best model</strong><br>
+        <div style="font-size:0.72rem; color:#e8b4be; line-height:1.85;">
+            <br><span style="color:#22C55E; font-weight:600;">Dataset loaded ✓</span><br>
+            {n_total:,} total rows &nbsp;<br>{n_labeled:,} labeled rows<br><br>
+            <span style="color:#F8FAFC; font-weight:600;">Best model</span><br>
             Gradient Boosting · Dropped<br>
-            Accuracy 87.1% · F1 0.694
+            Accuracy 87.1% &nbsp;·&nbsp; F1 0.694
         </div>""", unsafe_allow_html=True)
     else:
         st.markdown("""
-        <div style="font-size:0.72rem;color:#f87171;line-height:1.8;">
+        <div style="font-size:0.72rem; color:#EF4444; line-height:1.8;">
             ⚠ data/einkommen.train not found.<br>
-            Place the file at <code>data/einkommen.train</code> to enable live charts.
+            Place the file at <code>data/einkommen.train</code>
+            to enable live charts.
         </div>""", unsafe_allow_html=True)
 
 # ─── Page: Overview ──────────────────────────────────────────────────────────────
@@ -250,12 +339,11 @@ if page == "📊 Overview":
     st.markdown("""
     <div style="margin-bottom:2rem;">
         <div class="hero-title">Income <span class="hero-accent">Classification</span><br>ML Dashboard</div>
-        <div class="hero-subtitle">Binary prediction — ≤50K vs >50K annual income · Gradient Boosting best performer</div>
+        <div class="hero-subtitle">Binary prediction: ≤50K vs &gt;50K annual income &nbsp;·&nbsp; Gradient Boosting best performer</div>
     </div>""", unsafe_allow_html=True)
 
-    # Derive stats from real data if available, else fallback constants
     if DATA_LOADED:
-        labeled = df[df["Income"].isin(["<=50K", ">50K"])]
+        labeled    = df[df["Income"].isin(["<=50K", ">50K"])]
         n_total    = len(df)
         n_labeled  = len(labeled)
         cls_counts = labeled["Income"].value_counts()
@@ -266,15 +354,16 @@ if page == "📊 Overview":
 
     k1, k2, k3, k4 = st.columns(4)
     with k1: st.markdown(make_kpi("Total Instances", f"{n_total:,}", "Full dataset size"), unsafe_allow_html=True)
-    with k2: st.markdown(make_kpi("Labeled Rows", f"{n_labeled:,}", "Used for training"), unsafe_allow_html=True)
-    with k3: st.markdown(make_kpi("Best Accuracy", "87.1%", "Gradient Boosting · Dropped"), unsafe_allow_html=True)
-    with k4: st.markdown(make_kpi("Best ROC AUC", "0.784", "Gradient Boosting · Dropped"), unsafe_allow_html=True)
+    with k2: st.markdown(make_kpi("Labeled Rows",    f"{n_labeled:,}", "Used for training"), unsafe_allow_html=True)
+    with k3: st.markdown(make_kpi("Best Accuracy",   "87.1%", "Gradient Boosting · Dropped"), unsafe_allow_html=True)
+    with k4: st.markdown(make_kpi("Best ROC AUC",    "0.784", "Gradient Boosting · Dropped"), unsafe_allow_html=True)
 
     st.markdown("<br>", unsafe_allow_html=True)
     col_left, col_right = st.columns([3, 2])
 
     with col_left:
-        st.markdown('<div class="section-eyebrow">Model Performance</div><div class="section-header">Accuracy across all configurations</div>', unsafe_allow_html=True)
+        st.markdown('<div class="section-eyebrow">Model Performance</div>'
+                    '<div class="section-header">Accuracy across all configurations</div>', unsafe_allow_html=True)
         methods = ["KNN", "Iterative", "Dropped"]
         fig = go.Figure()
         for i, m_full in enumerate(MODEL_NAMES_FULL):
@@ -291,26 +380,27 @@ if page == "📊 Overview":
         st.plotly_chart(fig, width="stretch")
 
     with col_right:
-        st.markdown('<div class="section-eyebrow">Dataset</div><div class="section-header">Class distribution (labeled)</div>', unsafe_allow_html=True)
+        st.markdown('<div class="section-eyebrow">Dataset</div>'
+                    '<div class="section-header">Class distribution (labeled)</div>', unsafe_allow_html=True)
         fig2 = go.Figure(go.Pie(
             labels=["≤50K", ">50K"], values=[n_low, n_high],
             hole=0.62,
-            marker=dict(colors=[COLORS["primary"], COLORS["red"]], line=dict(color=COLORS["bg"], width=3)),
+            marker=dict(colors=[COLORS["teal"], COLORS["red"]], line=dict(color=COLORS["bg"], width=3)),
             textinfo="percent+label", textfont=dict(size=12, color=COLORS["text"]),
             hovertemplate="<b>%{label}</b><br>Count: %{value}<br>Share: %{percent}<extra></extra>",
         ))
-        fig2.add_annotation(text=f"{n_labeled:,}<br><span style='font-size:10px'>labeled</span>",
-                            x=0.5, y=0.5, showarrow=False, font=dict(size=14, color=COLORS["text"]), align="center")
-        apply_layout(fig2, height=360,
-                     legend_kw=dict(orientation="h", y=-0.05),
-                     showlegend=True)
+        fig2.add_annotation(
+            text=f"{n_labeled:,}<br><span style='font-size:10px'>labeled</span>",
+            x=0.5, y=0.5, showarrow=False, font=dict(size=14, color=COLORS["text"]), align="center",
+        )
+        apply_layout(fig2, height=360, legend_kw=dict(orientation="h", y=-0.05), showlegend=True)
         st.plotly_chart(fig2, width="stretch")
 
     st.markdown('<div class="section-header">Project Summary</div>', unsafe_allow_html=True)
     i1, i2, i3 = st.columns(3)
     with i1:
         st.markdown("""<div class="info-box"><strong>Problem Setting</strong><br>
-        Binary classification to predict whether a person earns ≤50K or >50K per year
+        Binary classification to predict whether a person earns <strong>≤50K</strong> or <strong>>50K</strong> per year
         using 14 demographic and employment features.</div>""", unsafe_allow_html=True)
     with i2:
         st.markdown("""<div class="info-box"><strong>Missing Data Strategy</strong><br>
@@ -318,7 +408,7 @@ if page == "📊 Overview":
         and <strong>Dropping</strong> rows with missing categorical values.</div>""", unsafe_allow_html=True)
     with i3:
         st.markdown("""<div class="info-box"><strong>Validation Strategy</strong><br>
-        10-fold cross-validation on labeled training data. The test set (25K rows) has no income
+        <strong>10-fold cross-validation</strong> on labeled training data. The test set (25K rows) has no income
         labels, so all reported metrics come from the validation folds.</div>""", unsafe_allow_html=True)
 
 # ─── Page: Data Exploration ───────────────────────────────────────────────────────
@@ -333,7 +423,8 @@ elif page == "🔍 Data Exploration":
     col_a, col_b = st.columns([1.4, 1])
 
     with col_a:
-        st.markdown('<div class="section-eyebrow">Schema</div><div class="section-header">Feature overview</div>', unsafe_allow_html=True)
+        st.markdown('<div class="section-eyebrow">Schema</div>'
+                    '<div class="section-header">Feature overview</div>', unsafe_allow_html=True)
         miss = df.isna().sum()
         schema = pd.DataFrame({
             "Feature": COLUMNS,
@@ -344,8 +435,9 @@ elif page == "🔍 Data Exploration":
         st.dataframe(schema, width="stretch", hide_index=True)
 
     with col_b:
-        st.markdown('<div class="section-eyebrow">Missing Values</div><div class="section-header">Columns with nulls</div>', unsafe_allow_html=True)
-        miss_df = miss[miss > 0].sort_values(ascending=True)
+        st.markdown('<div class="section-eyebrow">Missing Values</div>'
+                    '<div class="section-header">Columns with nulls</div>', unsafe_allow_html=True)
+        miss_df  = miss[miss > 0].sort_values(ascending=True)
         miss_pcts = (miss_df / len(df)).tolist()
         fig_miss = go.Figure(go.Bar(
             x=miss_df.values, y=miss_df.index.tolist(),
@@ -361,22 +453,21 @@ elif page == "🔍 Data Exploration":
 
     st.markdown("<hr>", unsafe_allow_html=True)
 
-    # ── Numerical distributions from real data ──
-    st.markdown('<div class="section-eyebrow">EDA</div><div class="section-header">Numerical feature distributions</div>', unsafe_allow_html=True)
+    # ── Numerical distributions ──
+    st.markdown('<div class="section-eyebrow">EDA</div>'
+                '<div class="section-header">Numerical feature distributions</div>', unsafe_allow_html=True)
     fig_num = make_subplots(rows=2, cols=3, subplot_titles=NUM_FEATURES,
                              vertical_spacing=0.16, horizontal_spacing=0.08)
-    positions = [(1,1),(1,2),(1,3),(2,1),(2,2),(2,3)]
     for idx, feat in enumerate(NUM_FEATURES):
-        r, c = positions[idx]
+        r, c = idx // 3 + 1, idx % 3 + 1
         series = df[feat].dropna().astype(float)
-        mu = series.mean()
+        mu     = series.mean()
         counts, bin_edges = np.histogram(series, bins=50)
         bin_centers = (bin_edges[:-1] + bin_edges[1:]) / 2
-        norm = counts / counts.max()
         fig_num.add_trace(go.Scatter(
-            x=bin_centers, y=norm, fill="tozeroy",
-            fillcolor="rgba(99,102,241,0.15)",
-            line=dict(color=COLORS["primary"], width=1.5),
+            x=bin_centers, y=counts / counts.max(), fill="tozeroy",
+            fillcolor="rgba(0,179,179,0.12)",
+            line=dict(color=COLORS["teal"], width=1.5),
             showlegend=False,
         ), row=r, col=c)
         fig_num.add_vline(x=mu, line_dash="dot", line_color=COLORS["red"], line_width=1.5, row=r, col=c)
@@ -390,11 +481,11 @@ elif page == "🔍 Data Exploration":
 
     st.markdown("<hr>", unsafe_allow_html=True)
 
-    # ── Categorical distributions from real data ──
-    st.markdown('<div class="section-eyebrow">Categorical</div><div class="section-header">Key categorical feature distributions</div>', unsafe_allow_html=True)
-    cat_choice = st.selectbox("Select feature", CAT_FEATURES, index=CAT_FEATURES.index("Gender"))
-
-    cat_counts = df[cat_choice].value_counts().head(15)
+    # ── Categorical distributions ──
+    st.markdown('<div class="section-eyebrow">Categorical</div>'
+                '<div class="section-header">Key categorical feature distributions</div>', unsafe_allow_html=True)
+    cat_choice  = st.selectbox("Select feature", CAT_FEATURES, index=CAT_FEATURES.index("Gender"))
+    cat_counts  = df[cat_choice].value_counts().head(15)
     fig_cat = go.Figure(go.Bar(
         x=cat_counts.index.tolist(), y=cat_counts.values,
         marker_color=COLORS["primary"], marker_line_width=0,
@@ -406,20 +497,21 @@ elif page == "🔍 Data Exploration":
 
     st.markdown("<hr>", unsafe_allow_html=True)
 
-    # ── Income vs numerical feature ──
-    st.markdown('<div class="section-eyebrow">Bivariate</div><div class="section-header">Income class vs numerical feature</div>', unsafe_allow_html=True)
-    labeled = df[df["Income"].isin(["<=50K", ">50K"])]
+    # ── Bivariate ──
+    st.markdown('<div class="section-eyebrow">Bivariate</div>'
+                '<div class="section-header">Income class vs numerical feature</div>', unsafe_allow_html=True)
+    labeled    = df[df["Income"].isin(["<=50K", ">50K"])]
     num_choice = st.selectbox("Select numerical feature", NUM_FEATURES, index=0)
-
     fig_biv = go.Figure()
-    for cls, col in [("<=50K", COLORS["primary"]), (">50K", COLORS["red"])]:
+    for cls, col in [("<=50K", COLORS["teal"]), (">50K", COLORS["red"])]:
         vals = labeled[labeled["Income"] == cls][num_choice].dropna()
         counts, edges = np.histogram(vals, bins=40)
         centers = (edges[:-1] + edges[1:]) / 2
+        r2, g2, b2 = int(col[1:3], 16), int(col[3:5], 16), int(col[5:], 16)
         fig_biv.add_trace(go.Scatter(
             x=centers, y=counts / counts.max(),
             fill="tozeroy", name=cls,
-            fillcolor=col.replace("#", "rgba(") + ",0.15)" if "#" not in col else f"rgba({int(col[1:3],16)},{int(col[3:5],16)},{int(col[5:],16)},0.15)",
+            fillcolor=f"rgba({r2},{g2},{b2},0.15)",
             line=dict(color=col, width=2),
         ))
     apply_layout(fig_biv, title=f"{num_choice} by income class", height=320,
@@ -427,9 +519,13 @@ elif page == "🔍 Data Exploration":
     st.plotly_chart(fig_biv, width="stretch")
 
 # ─── Page: Model Results ──────────────────────────────────────────────────────────
-elif page == "🤖 Model Results":
+elif page == "🧠 Model Results":
     st.markdown('<div class="hero-title">Model <span class="hero-accent">Results</span></div>', unsafe_allow_html=True)
-    st.markdown(f'<div class="hero-subtitle">Imputation: <strong style="color:#c9d1e0;">{imputation}</strong> · Model: <strong style="color:#c9d1e0;">{model_choice}</strong></div><br>', unsafe_allow_html=True)
+    st.markdown(
+        f'<div class="hero-subtitle">Imputation: <strong style="color:#F8FAFC;">{imputation}</strong>'
+        f' &nbsp;·&nbsp; Model: <strong style="color:#F8FAFC;">{model_choice}</strong></div><br>',
+        unsafe_allow_html=True,
+    )
 
     metrics = RESULTS[imputation][model_choice]
 
@@ -448,20 +544,19 @@ elif page == "🤖 Model Results":
     st.markdown("<br>", unsafe_allow_html=True)
     col_cm, col_bar = st.columns(2)
 
-    # ── Confusion Matrix ──────────────────────────────────────────────────────────
     with col_cm:
-        st.markdown('<div class="section-eyebrow">Evaluation</div><div class="section-header">Confusion Matrix</div>', unsafe_allow_html=True)
-        cm  = metrics["cm"]
+        st.markdown('<div class="section-eyebrow">Evaluation</div>'
+                    '<div class="section-header">Confusion Matrix</div>', unsafe_allow_html=True)
+        cm = metrics["cm"]
         tn, fp, fn, tp = cm[0][0], cm[0][1], cm[1][0], cm[1][1]
         total = tn + fp + fn + tp
-        z = [[tn, fp], [fn, tp]]
         text_vals = [
             [f"TN<br>{tn}<br>({tn/total:.1%})", f"FP<br>{fp}<br>({fp/total:.1%})"],
             [f"FN<br>{fn}<br>({fn/total:.1%})", f"TP<br>{tp}<br>({tp/total:.1%})"],
         ]
         fig_cm = go.Figure(go.Heatmap(
-            z=z, text=text_vals, texttemplate="%{text}",
-            colorscale=[[0, COLORS["card"]], [0.5, "#312e81"], [1, COLORS["primary"]]],
+            z=[[tn, fp], [fn, tp]], text=text_vals, texttemplate="%{text}",
+            colorscale=[[0, COLORS["card"]], [0.5, "#3d1520"], [1, COLORS["primary"]]],
             showscale=False, xgap=3, ygap=3,
             hovertemplate="Predicted: %{x}<br>Actual: %{y}<br>Count: %{z}<extra></extra>",
         ))
@@ -470,17 +565,17 @@ elif page == "🤖 Model Results":
                      xaxis_kw=dict(tickvals=[0,1], ticktext=["≤50K",">50K"],
                                    title="Predicted", gridcolor="rgba(0,0,0,0)"),
                      yaxis_kw=dict(tickvals=[0,1], ticktext=["≤50K",">50K"],
-                                   title="Actual", gridcolor="rgba(0,0,0,0)",
-                                   autorange="reversed"))
+                                   title="Actual", gridcolor="rgba(0,0,0,0)", autorange="reversed"))
         st.plotly_chart(fig_cm, width="stretch")
 
-    # ── Metric bar ───────────────────────────────────────────────────────────────
     with col_bar:
-        st.markdown('<div class="section-eyebrow">Evaluation</div><div class="section-header">All metrics at a glance</div>', unsafe_allow_html=True)
+        st.markdown('<div class="section-eyebrow">Evaluation</div>'
+                    '<div class="section-header">All metrics at a glance</div>', unsafe_allow_html=True)
         metric_names = ["Accuracy", "F1-Score", "Recall", "Precision", "ROC AUC"]
-        metric_vals  = [metrics["accuracy"], metrics["f1_score"], metrics["recall"], metrics["precision"], metrics["roc_auc"]]
-        bar_colors   = [COLORS["primary"] if v >= 0.7 else COLORS["amber"] if v >= 0.5 else COLORS["red"] for v in metric_vals]
-
+        metric_vals  = [metrics["accuracy"], metrics["f1_score"], metrics["recall"],
+                        metrics["precision"], metrics["roc_auc"]]
+        bar_colors   = [COLORS["primary"] if v >= 0.7 else COLORS["amber"] if v >= 0.5 else COLORS["red"]
+                        for v in metric_vals]
         fig_bar = go.Figure(go.Bar(
             x=metric_names, y=metric_vals,
             marker=dict(color=bar_colors, line=dict(width=0)),
@@ -490,12 +585,12 @@ elif page == "🤖 Model Results":
                      yaxis_kw=dict(range=[0, 1.18], gridcolor=COLORS["border"], tickformat=".0%"))
         st.plotly_chart(fig_bar, width="stretch")
 
-    # ── Full table for this imputation ────────────────────────────────────────────
     st.markdown("<hr>", unsafe_allow_html=True)
-    st.markdown(f'<div class="section-eyebrow">All Models</div><div class="section-header">Full comparison — {imputation} imputation</div>', unsafe_allow_html=True)
+    st.markdown(f'<div class="section-eyebrow">All Models</div>'
+                f'<div class="section-header">Full comparison — {imputation} imputation</div>', unsafe_allow_html=True)
     rows = []
     for mname in MODEL_NAMES_FULL:
-        m = RESULTS[imputation][mname]
+        m       = RESULTS[imputation][mname]
         is_best = mname == "Gradient Boosting Classification"
         rows.append({
             "Model":     mname.replace(" Classification","").replace(" (SVMs)","") + (" ★" if is_best else ""),
@@ -510,13 +605,12 @@ elif page == "🤖 Model Results":
 # ─── Page: Model Comparison ───────────────────────────────────────────────────────
 elif page == "📈 Model Comparison":
     st.markdown('<div class="hero-title">Model <span class="hero-accent">Comparison</span></div>', unsafe_allow_html=True)
-    st.markdown('<div class="hero-subtitle">Cross-imputation performance · 10-fold cross-validation</div><br>', unsafe_allow_html=True)
+    st.markdown('<div class="hero-subtitle">Cross-imputation performance &nbsp;·&nbsp; 10-fold cross-validation</div><br>', unsafe_allow_html=True)
 
     metric_opt = st.selectbox(
         "Compare metric", ["accuracy", "f1_score", "recall", "precision", "roc_auc"],
         format_func=lambda x: x.replace("_", " ").title(),
     )
-
     methods = ["KNN", "Iterative", "Dropped"]
     fig_cmp = go.Figure()
     for i, m_full in enumerate(MODEL_NAMES_FULL):
@@ -533,26 +627,26 @@ elif page == "📈 Model Comparison":
                  barmode="group", bargap=0.2, bargroupgap=0.05)
     st.plotly_chart(fig_cmp, width="stretch")
 
-    # ── Radar: best model per imputation ─────────────────────────────────────────
+    # ── Radar ──
     st.markdown('<div class="section-header">Multi-metric radar — Gradient Boosting across imputation methods</div>', unsafe_allow_html=True)
     radar_metrics = ["accuracy", "f1_score", "recall", "precision", "roc_auc"]
     radar_labels  = ["Accuracy", "F1-Score", "Recall", "Precision", "ROC AUC"]
-    best_model = "Gradient Boosting Classification"
-
+    best_model    = "Gradient Boosting Classification"
     fig_radar = go.Figure()
     for i, mth in enumerate(methods):
-        vals = [RESULTS[mth][best_model][m] for m in radar_metrics] + [RESULTS[mth][best_model][radar_metrics[0]]]
+        vals   = [RESULTS[mth][best_model][m] for m in radar_metrics] + [RESULTS[mth][best_model][radar_metrics[0]]]
         r, g, b = int(MODEL_COLORS[i][1:3],16), int(MODEL_COLORS[i][3:5],16), int(MODEL_COLORS[i][5:],16)
         fig_radar.add_trace(go.Scatterpolar(
             r=vals, theta=radar_labels + [radar_labels[0]],
-            name=f"{mth}", fill="toself",
+            name=mth, fill="toself",
             fillcolor=f"rgba({r},{g},{b},0.12)",
             line=dict(color=MODEL_COLORS[i], width=2),
         ))
     fig_radar.update_layout(
         polar=dict(
             bgcolor="rgba(0,0,0,0)",
-            radialaxis=dict(visible=True, range=[0,1], gridcolor=COLORS["border"], tickfont=dict(size=9, color=COLORS["muted"])),
+            radialaxis=dict(visible=True, range=[0,1], gridcolor=COLORS["border"],
+                            tickfont=dict(size=9, color=COLORS["muted"])),
             angularaxis=dict(gridcolor=COLORS["border"], tickfont=dict(size=11, color=COLORS["text"])),
         ),
         paper_bgcolor="rgba(0,0,0,0)", height=420,
@@ -562,17 +656,16 @@ elif page == "📈 Model Comparison":
     )
     st.plotly_chart(fig_radar, width="stretch")
 
-    # ── Heatmap ───────────────────────────────────────────────────────────────────
+    # ── Heatmap ──
     st.markdown("<hr>", unsafe_allow_html=True)
     st.markdown('<div class="section-header">Performance heatmap — all models × all methods</div>', unsafe_allow_html=True)
     heat_metric = st.selectbox("Heatmap metric", ["accuracy", "f1_score", "roc_auc"],
                                 format_func=lambda x: x.replace("_"," ").title(), key="heat")
-
-    z_vals = [[RESULTS[mth][m][heat_metric] for mth in methods] for m in MODEL_NAMES_FULL]
+    z_vals   = [[RESULTS[mth][m][heat_metric] for mth in methods] for m in MODEL_NAMES_FULL]
     y_labels = [n.replace(" Classification","").replace(" (SVMs)","") for n in MODEL_NAMES_FULL]
     fig_heat = go.Figure(go.Heatmap(
         z=z_vals, x=methods, y=y_labels,
-        colorscale=[[0,"#1a2035"],[0.5,"#312e81"],[1,COLORS["primary"]]],
+        colorscale=[[0, COLORS["card"]], [0.5, "#3d1520"], [1, COLORS["primary"]]],
         text=[[f"{v:.3f}" for v in row] for row in z_vals],
         texttemplate="%{text}", textfont=dict(size=13),
         xgap=4, ygap=4,
@@ -590,15 +683,14 @@ elif page == "🎯 Predictions":
     methods = ["KNN", "Iterative", "Dropped"]
     p1, p2, p3 = st.columns(3)
     for col, mth in zip([p1, p2, p3], methods):
-        data = PREDICTED_COUNTS[mth]
-        total = data["<=50K"] + data[">50K"]
-        pct_high = data[">50K"] / total
+        data      = PREDICTED_COUNTS[mth]
+        total     = data["<=50K"] + data[">50K"]
+        pct_high  = data[">50K"] / total
         with col:
             st.markdown(make_kpi(f"{mth} Imputation", f"{data['>50K']:,}", f"{pct_high:.1%} predicted >50K"), unsafe_allow_html=True)
 
     st.markdown("<br>", unsafe_allow_html=True)
 
-    # ── Grouped bar ───────────────────────────────────────────────────────────────
     st.markdown('<div class="section-header">Predicted class counts — Gradient Boosting Classifier</div>', unsafe_allow_html=True)
     fig_pred = go.Figure()
     fig_pred.add_trace(go.Bar(
@@ -617,14 +709,13 @@ elif page == "🎯 Predictions":
                  barmode="group", bargap=0.3)
     st.plotly_chart(fig_pred, width="stretch")
 
-    # ── Stacked % bar ─────────────────────────────────────────────────────────────
     st.markdown('<div class="section-header">Class share by imputation method</div>', unsafe_allow_html=True)
     fig_stk = go.Figure()
-    totals = {m: PREDICTED_COUNTS[m]["<=50K"] + PREDICTED_COUNTS[m][">50K"] for m in methods}
+    totals  = {m: PREDICTED_COUNTS[m]["<=50K"] + PREDICTED_COUNTS[m][">50K"] for m in methods}
     fig_stk.add_trace(go.Bar(
         name="≤50K", x=methods,
         y=[PREDICTED_COUNTS[m]["<=50K"] / totals[m] for m in methods],
-        marker_color=COLORS["primary"], marker_line_width=0,
+        marker_color=COLORS["teal"], marker_line_width=0,
         text=[f"{PREDICTED_COUNTS[m]['<=50K']/totals[m]:.1%}" for m in methods], textposition="inside",
     ))
     fig_stk.add_trace(go.Bar(
@@ -633,15 +724,16 @@ elif page == "🎯 Predictions":
         marker_color=COLORS["red"], marker_line_width=0,
         text=[f"{PREDICTED_COUNTS[m]['>50K']/totals[m]:.1%}" for m in methods], textposition="inside",
     ))
-    apply_layout(fig_stk, height=300, yaxis_kw=dict(tickformat=".0%", gridcolor=COLORS["border"]),
+    apply_layout(fig_stk, height=300,
+                 yaxis_kw=dict(tickformat=".0%", gridcolor=COLORS["border"]),
                  barmode="stack")
     st.plotly_chart(fig_stk, width="stretch")
 
     st.markdown("<hr>", unsafe_allow_html=True)
     st.markdown("""<div class="info-box">
     <strong>Interpretation</strong><br>
-    Gradient Boosting consistently predicts ~18–23% of test instances as earning >50K across all imputation strategies.
-    The <strong>Iterative</strong> method predicts the most ≤50K cases (20,955), while <strong>KNN</strong> and
-    <strong>Dropped</strong> show similar distributions. Imputation method does not strongly shift prediction
-    proportions, suggesting robust model behaviour.
+    Gradient Boosting consistently predicts ~18–23% of test instances as earning >50K across all imputation
+    strategies. The <strong>Iterative</strong> method predicts the most ≤50K cases (20,955), while
+    <strong>KNN</strong> and <strong>Dropped</strong> show similar distributions. Imputation method does
+    not strongly shift prediction proportions, suggesting robust model behaviour.
     </div>""", unsafe_allow_html=True)
