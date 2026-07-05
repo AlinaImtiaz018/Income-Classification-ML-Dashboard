@@ -1,17 +1,17 @@
-# Machine Learning Streamlit Demos
+# Machine Learning - Income Classification Streamlit Demonstrator
 
-This repository contains interactive **Streamlit applications** that demonstrate the functionality of my machine learning projects. Each application provides a user-friendly interface for exploring datasets, running trained models, visualizing results, and understanding the underlying machine learning workflows.
+This repository contains an interactive **Streamlit application** that demonstrates the functionality of my machine learning income project. The application provides a user-friendly interface for exploring the dataset, running trained models, visualizing results, and understanding the underlying machine learning workflow.
 
-The purpose of this repository is to make my projects accessible through interactive web applications without requiring users to execute notebooks or write code.
+The purpose of this repository is to make my project accessible through an interactive web application without requiring users to execute notebooks or write code.
 
 ---
 
 ## Features
 
-* Interactive machine learning demos
+* Interactive machine learning demonstrator
 * Data exploration and visualization
 * Model prediction interfaces
-* Performance evaluation dashboards
+* Performance evaluation dashboard
 * Downloadable results (where applicable)
 * Responsive Streamlit user interface
 
@@ -20,21 +20,36 @@ The purpose of this repository is to make my projects accessible through interac
 ## Project Structure
 
 ```text
-streamlit-demos/
-│
-├── apps/
-|   ├──
-|   ├──
-|   ├──
-|   ├──
-|   └──
-├── LICENSE
+Income Classification ML Dashboard/
+|
+├── .streamlit/
+|   └── config.toml
+├── assets/
+|   └── style.css
+├── data/
+|   └── einkommen.train
+├── pages_modules/
+|   ├── data_exploration.py
+|   ├── model_comparison.py
+|   ├── model_results.py
+|   ├── overview.py
+|   └── predictions.py
+├── utils/
+|   ├── colors.py
+|   ├── constants.py
+|   ├── data.py
+|   ├── layout.py
+|   ├── sidebar.py
+|   └── styles.py
 ├── CITATION.cff
 ├── CONDUCT.md
-└── README.md
+├── LICENSE
+├── README.md
+├── income-app.py
+└── requirements.txt
 ```
 
-Each Streamlit application is self-contained and demonstrates a specific machine learning project or workflow.
+The Streamlit application demonstrates a machine learning project or workflow.
 
 ---
 
@@ -43,8 +58,8 @@ Each Streamlit application is self-contained and demonstrates a specific machine
 Clone the repository:
 
 ```bash
-git clone https://github.com/<your-username>/streamlit-demos.git
-cd streamlit-demos
+git clone https://github.com/AlinaImtiaz018/Income-Classification-ML-Dashboard.git
+cd Income-Classification-ML-Dashboard
 ```
 
 Create a virtual environment (recommended):
@@ -101,7 +116,7 @@ The application will open in your default browser.
 
 ## Purpose
 
-This repository serves as a portfolio of interactive demonstrations for my machine learning projects, making it easy to explore model behavior, predictions, and evaluation results through a web interface.
+This repository serves as a portfolio of the interactive demonstration for my machine learning income project, making it easy to explore model behavior, predictions, and evaluation results through a web interface.
 
 ---
 
