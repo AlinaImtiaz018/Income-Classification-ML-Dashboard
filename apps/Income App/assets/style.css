@@ -1,0 +1,192 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=DM+Sans:wght@400;500;600;700&display=swap');
+
+html, body, [class*="css"] { font-family: 'Inter', sans-serif; }
+.main { background-color: #141B24; } /* #0f172a */
+.block-container {
+    padding-top: 2.5rem;
+    padding-right: 2.5rem;
+    padding-left: 2.5rem;
+    padding-bottom: 2rem;
+    max-width: 1400px;
+}
+
+/* ── Sidebar ── */
+section[data-testid="stSidebar"] {
+    background-color: #6d1329; /* #ad1f42 #4a1c28*/
+    /* Subtle right border that blends — much darker than before */
+    border-right: 1px solid #321018;
+    /* Inward shadow gives depth without a harsh line */
+    box-shadow: 4px 0 24px rgba(0,0,0,0.55);
+}
+
+/* Sidebar label typography — section headings above widgets */
+section[data-testid="stSidebar"] .stSelectbox label,
+section[data-testid="stSidebar"] .stRadio label,
+section[data-testid="stSidebar"] p {
+    color: #ffffff !important; /* #E8CAD0*/
+    font-size: 0.8rem;
+    font-weight: 500;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    margin-bottom: 0 !important;
+}
+
+/* Fixed, uniform spacing: label → widget → next label */
+section[data-testid="stSidebar"] div[data-testid="stMarkdownContainer"] p {
+    margin-top: 0.1rem;
+    margin-bottom: 0.2rem;
+}
+section[data-testid="stSidebar"] div[data-testid="stSelectbox"] {
+    margin-bottom: 0;
+}
+section[data-testid="stSidebar"] div[data-testid="stRadio"] {
+    margin-bottom: 0;
+}
+/* Radio option labels */
+section[data-testid="stSidebar"] .stRadio div[role="radiogroup"] label {
+    font-size: 0.84rem !important;
+    font-weight: 400 !important;
+    letter-spacing: 0 !important;
+    text-transform: none !important;
+    color: #d8b0ba !important;
+    padding: 0.18rem 0;
+}
+section[data-testid="stSidebar"] .stRadio div[role="radiogroup"] label:hover {
+    color: #F8FAFC !important;
+}
+/* Sidebar top padding */
+section[data-testid="stSidebar"] .block-container,
+section[data-testid="stSidebar"] > div:first-child {
+    padding-top: 0.5rem !important;
+}
+section[data-testid="stSidebar"] div[data-testid="stVerticalBlock"] {
+    gap: 0rem !important;
+}
+
+/* ── Hero ── */
+.hero-title {
+    font-family: 'DM Sans', sans-serif;
+    font-size: 2.5rem;
+    font-weight: 700;
+    color: #F8FAFC;
+    letter-spacing: -0.025em;
+    line-height: 1.18;
+    margin-bottom: 0.2rem;
+}
+.hero-subtitle {
+    font-size: 0.92rem;
+    color: #94A3B8;
+    font-weight: 400;
+    margin-bottom: 0;
+    line-height: 1.5;
+}
+.hero-accent { color: #dd3c64; }
+
+/* ── KPI cards ── */
+.kpi-card {
+    background: #0d1117; /* #161e2e*/
+    border: 1px solid #381920; /* #1a283d */
+    border-top: 2px solid #dd3c64;
+    border-radius: 10px;
+    padding: 1.2rem 1.4rem 1rem 1.4rem;
+    position: relative;
+    height: 126px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.45), 0 1px 4px rgba(0,0,0,0.3);
+}
+.kpi-label {
+    font-size: 0.67rem;
+    font-weight: 600;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: #94A3B8;
+    margin-bottom: 0.3rem;
+}
+.kpi-value {
+    font-family: 'DM Sans', sans-serif;
+    font-size: 1.9rem;
+    font-weight: 700;
+    color: #F8FAFC;
+    line-height: 1;
+}
+.kpi-sub      { font-size: 0.73rem; color: #22C55E; margin-top: 0.25rem; min-height: 1rem; }
+.kpi-sub-warn { font-size: 0.73rem; color: #EF0444; margin-top: 0.25rem; min-height: 1rem; }
+
+/* ── Section headings ── */
+.section-header {
+    font-family: 'DM Sans', sans-serif;
+    font-size: 1.05rem;
+    font-weight: 600;
+    color: #F8FAFC;
+    letter-spacing: -0.01em;
+    margin-bottom: 0.75rem;
+    padding-bottom: 0.5rem;
+    border-bottom: 1px solid #334155;
+}
+.section-eyebrow {
+    font-size: 0.63rem;
+    font-weight: 700;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: #db5771;
+    margin-bottom: 0.18rem;
+}
+
+/* ── Dividers ── */
+hr { border: none; border-top: 1px solid #334155; margin: 1.5rem 0; }
+
+/* ── Info boxes ── */
+.info-box {
+    background: #0d1117;
+    border: 1px solid #381920;
+    border-left: 3px solid #dd3c64;
+    border-radius: 8px;
+    padding: 1rem 1.15rem;
+    font-size: 0.83rem;
+    color: #94A3B8;
+    line-height: 1.65;
+    min-height: 120px;
+}
+.info-box strong { color: #F8FAFC; }
+
+/* ===== Selectbox ===== */
+
+/* Closed select box */
+.stSelectbox div[data-baseweb="select"] > div {
+    background-color: #0d1117 !important;
+    border: 1px solid #334155 !important;
+    color: #F8FAFC !important;
+}
+
+/* Hover over closed select box */
+.stSelectbox div[data-baseweb="select"] > div:hover {
+    border-color: #dd3c64 !important;
+}
+
+/* Open dropdown menu */
+div[role="listbox"] {
+    background-color: #0d1117 !important;
+    border: 1px solid #334155 !important;
+}
+
+/* Dropdown options */
+div[role="option"] {
+    background-color: #0d1117 !important;
+    color: #F8FAFC !important;
+}
+
+/* Hovered option */
+div[role="option"]:hover {
+    background-color: rgba(221, 60, 100, 0.18) !important;
+    color: #F8FAFC !important;
+}
+
+/* Selected option */
+div[aria-selected="true"] {
+    background-color: rgba(221, 60, 100, 0.28) !important;
+}
+
+#MainMenu { visibility: hidden; }
+footer     { visibility: hidden; }
