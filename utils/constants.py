@@ -1,4 +1,5 @@
 MODEL_NAMES_SHORT = ["Logistic Reg.", "Random Forest", "Grad. Boosting", "SVM"]
+
 MODEL_NAMES_FULL = [
     "Linear Classification",
     "Random Forest Classification",
