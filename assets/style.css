@@ -1,7 +1,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=DM+Sans:wght@400;500;600;700&display=swap');
 
 html, body, [class*="css"] { font-family: 'Inter', sans-serif; }
-.main { background-color: #141B24; } /* #0f172a */
+.main { background-color: #0a0a0a; } /* #0f172a */
 .block-container {
     padding-top: 2.5rem;
     padding-right: 2.5rem;
@@ -84,7 +84,7 @@ section[data-testid="stSidebar"] div[data-testid="stVerticalBlock"] {
 
 /* ── KPI cards ── */
 .kpi-card {
-    background: #0d1117; /* #161e2e*/
+    background: #171717; /* #161e2e  #0d1117*/
     border: 1px solid #381920; /* #1a283d */
     border-top: 2px solid #dd3c64;
     border-radius: 10px;
@@ -139,7 +139,7 @@ hr { border: none; border-top: 1px solid #334155; margin: 1.5rem 0; }
 
 /* ── Info boxes ── */
 .info-box {
-    background: #0d1117;
+    background: #171717;
     border: 1px solid #381920;
     border-left: 3px solid #dd3c64;
     border-radius: 8px;
