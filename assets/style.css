@@ -155,8 +155,8 @@ hr { border: none; border-top: 1px solid #334155; margin: 1.5rem 0; }
 
 /* Closed select box */
 .stSelectbox div[data-baseweb="select"] > div {
-    background-color: #0d1117 !important;
-    border: 1px solid #334155 !important;
+    background-color: #171717 !important;
+    border: 1px solid #dd3c64 !important;
     color: #F8FAFC !important;
 }
 
@@ -167,13 +167,13 @@ hr { border: none; border-top: 1px solid #334155; margin: 1.5rem 0; }
 
 /* Open dropdown menu */
 div[role="listbox"] {
-    background-color: #0d1117 !important;
-    border: 1px solid #334155 !important;
+    background-color: #171717 !important;
+    border: 1px solid #dd3c64 !important;
 }
 
 /* Dropdown options */
 div[role="option"] {
-    background-color: #0d1117 !important;
+    background-color: #171717 !important;
     color: #F8FAFC !important;
 }
 
