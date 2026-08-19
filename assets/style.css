@@ -179,13 +179,13 @@ div[role="option"] {
 
 /* Hovered option */
 div[role="option"]:hover {
-    background-color: rgba(221, 60, 100, 0.18) !important;
+    background-color: #171717 !important;
     color: #F8FAFC !important;
 }
 
 /* Selected option */
 div[aria-selected="true"] {
-    background-color: rgba(221, 60, 100, 0.28) !important;
+    background-color: #171717 !important;
 }
 
 #MainMenu { visibility: hidden; }
