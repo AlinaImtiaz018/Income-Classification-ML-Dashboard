@@ -22,17 +22,17 @@ load_css()
 
 page, imputation, model_choice = show_sidebar()
 
-if page == "📊 Overview":
+if page == "Overview":
     overview.display()
 
-elif page == "🔍 Data Exploration":
+elif page == "Data Exploration":
     data_exploration.display()
 
-elif page == "🧠 Model Results":
+elif page == "Model Results":
     model_results.display(imputation, model_choice)
 
-elif page == "📈 Model Comparison":
+elif page == "Model Comparison":
     model_comparison.display()
 
-elif page == "🎯 Predictions":
+elif page == "Predictions":
     predictions.display()
