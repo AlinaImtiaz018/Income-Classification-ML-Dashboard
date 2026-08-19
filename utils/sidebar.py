@@ -36,7 +36,7 @@ def show_sidebar():
         st.markdown("<br><p>Navigation</p>", unsafe_allow_html=True)
         page = st.radio(
             "Navigation",
-            ["📊 Overview", "🔍 Data Exploration", "🧠 Model Results", "📈 Model Comparison", "🎯 Predictions"],
+            ["Overview", "Data Exploration", "Model Results", "Model Comparison", "Predictions"],
             label_visibility="hidden",
         )
 
