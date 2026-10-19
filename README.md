@@ -1,6 +1,6 @@
 # Machine Learning - Income Classification Streamlit Demonstrator
 
-This repository contains an interactive **Streamlit application** that demonstrates the functionality of my machine learning income project. The application provides a user-friendly interface for exploring the dataset, running trained models, visualizing results, and understanding the underlying machine learning workflow.
+This repository contains an interactive **Streamlit application** that demonstrates the functionality of my machine learning income project. This application provides a user-friendly interface for exploring the dataset, running trained models, visualizing results, and understanding the underlying machine learning workflow.
 
 The purpose of this repository is to make my project accessible through an interactive web application without requiring users to execute notebooks or write code.
 
