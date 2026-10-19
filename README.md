@@ -49,7 +49,7 @@ Income Classification ML Dashboard/
 └── requirements.txt
 ```
 
-The Streamlit application demonstrates a machine learning project or workflow.
+The Streamlit application demonstrates my machine learning project.
 
 ---
 
@@ -98,7 +98,7 @@ Launch Streamlit:
 streamlit run app.py
 ```
 
-The application will open in your default browser.
+The application will open in your default browser; if that is not the case, you can always copy the link shown in the terminal after launching the application.
 
 ---
 
