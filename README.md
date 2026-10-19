@@ -49,7 +49,7 @@ Income Classification ML Dashboard/
 └── requirements.txt
 ```
 
-The Streamlit application demonstrates a machine learning project or workflow.
+The Streamlit application demonstrates my machine learning project.
 
 ---
 
