@@ -98,7 +98,7 @@ Launch Streamlit:
 streamlit run app.py
 ```
 
-The application will open in your default browser.
+The application will open in your default browser; if that is not the case, you can always copy the link shown in the terminal after launching the application.
 
 ---
 
